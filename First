@@ -1,0 +1,48 @@
+public class Employee {
+    private int empId;
+    private String empName;
+    private String designation;
+    private int deptId;
+    
+}
+
+public class Department {
+    private int deptId;
+    private String deptName;
+   
+}
+
+// for data storage
+
+private static List<Employee> employees = new ArrayList<>();
+private static List<Department> departments = new ArrayList<>();
+
+// fetch employee by id
+
+public Employee getEmployeeById(int empId) {
+    return employees.stream()
+            .filter(employee -> employee.getEmpId() == empId)
+            .findFirst()
+            .orElse(null);
+}
+
+// Check the employee existence
+
+public boolean isEmployeePresent(int empId) {
+    return employees.stream()
+            .anyMatch(employee -> employee.getEmpId() == empId);
+}
+// to delete employee
+
+public List<Employee> deleteEmployee(int empId) {
+    employees.removeIf(employee -> employee.getEmpId() == empId);
+    return employees;
+}
+
+// to add employee
+
+public List<Employee> addEmployee(Employee employee) {
+    employees.add(employee);
+    return employees;
+}
+
